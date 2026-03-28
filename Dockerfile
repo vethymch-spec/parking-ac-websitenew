@@ -5,10 +5,10 @@ FROM node:20-alpine
 WORKDIR /app
 
 # 复制 package.json
-COPY package*.json ./
+COPY package.json ./
 
-# 安装依赖（使用 legacy-peer-deps 解决冲突）
-RUN npm install --legacy-peer-deps
+# 安装依赖（使用 --force 解决冲突）
+RUN npm install --force
 
 # 复制源代码
 COPY . .
