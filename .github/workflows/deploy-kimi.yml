@@ -1,0 +1,36 @@
+name: Deploy to Kimi
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+          
+      - name: Install dependencies
+        run: pnpm install
+        
+      - name: Build
+        run: pnpm build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+        
+      - name: Deploy to Kimi
+        uses: okcomputer/kimi-deploy-action@v1
+        with:
+          kimi-token: ${{ secrets.KIMI_TOKEN }}
+          site-id: ${{ secrets.KIMI_SITE_ID }}
