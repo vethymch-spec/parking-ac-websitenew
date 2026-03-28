@@ -2,20 +2,17 @@
 # https://nixpacks.com/docs/configuration/file
 
 [phases.setup]
-nixPkgs = ["nodejs_20", "npm-9_x"]
-cmds = [
-  "npm install -g pnpm"
-]
+nixPkgs = ["nodejs_20"]
 
 [phases.install]
 cmds = [
-  "pnpm install --frozen-lockfile"
+  "npm install"
 ]
 
 [phases.build]
 cmds = [
-  "pnpm build"
+  "npm run build"
 ]
 
 [start]
-cmd = "pnpm start"
+cmd = "npm start"
