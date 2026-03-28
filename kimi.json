@@ -1,0 +1,12 @@
+{
+  "build": {
+    "command": "npm install -g pnpm && pnpm install && pnpm build",
+    "outputDir": "dist/client"
+  },
+  "env": {
+    "VITE_API_URL": {
+      "description": "Railway backend API URL",
+      "required": true
+    }
+  }
+}

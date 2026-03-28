@@ -1,0 +1,15 @@
+# Nixpacks configuration for Railway deployment
+# https://nixpacks.com/docs/configuration/file
+
+[phases.build]
+cmds = [
+  "npm install -g pnpm",
+  "pnpm install",
+  "pnpm build"
+]
+
+[phases.setup]
+nixPkgs = ["nodejs_20", "npm-9_x"]
+
+[start]
+cmd = "pnpm start"
