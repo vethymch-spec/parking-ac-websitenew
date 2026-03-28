@@ -1,15 +1,21 @@
 # Nixpacks configuration for Railway deployment
 # https://nixpacks.com/docs/configuration/file
 
-[phases.build]
-cmds = [
-  "npm install -g pnpm",
-  "pnpm install",
-  "pnpm build"
-]
-
 [phases.setup]
 nixPkgs = ["nodejs_20", "npm-9_x"]
+cmds = [
+  "npm install -g pnpm"
+]
+
+[phases.install]
+cmds = [
+  "pnpm install --frozen-lockfile"
+]
+
+[phases.build]
+cmds = [
+  "pnpm build"
+]
 
 [start]
 cmd = "pnpm start"
